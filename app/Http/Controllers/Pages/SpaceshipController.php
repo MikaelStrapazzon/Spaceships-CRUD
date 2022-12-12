@@ -53,7 +53,7 @@ class SpaceshipController extends Controller
     public function store(StoreSpaceshipRequest $request)
     {
         $newSpaceship = $request->all();
-        $newSpaceship['arquivo'] = md5('img_' . $newSpaceship['name'] . $newSpaceship['motor_power']) . '.png';
+        $newSpaceship['arquivo'] = Spaceship::generateFileName('img_' . $newSpaceship['name'] . $newSpaceship['motor_power']);
 
         $spaceship = Spaceship::create($newSpaceship);
 

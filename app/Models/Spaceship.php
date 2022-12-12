@@ -44,4 +44,13 @@ class Spaceship extends Model
             return false;
         }
     }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    public static function generateFileName(string $key): string
+    {
+        return md5($key) . '.png';
+    }
 }

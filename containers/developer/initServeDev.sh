@@ -15,6 +15,10 @@ if [ ! -f "./.env" ]; then
     php artisan key:generate
 fi
 
+if [ ! -f "./storage/app/public/images/default.png" ]; then
+    cp ./containers/default-files/default.png ./storage/app/public/images/default.png
+fi
+
 php artisan icons:cache
 
 php artisan migrate
