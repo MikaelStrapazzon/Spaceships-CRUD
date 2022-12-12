@@ -10,6 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SpaceshipController extends Controller
@@ -21,7 +22,7 @@ class SpaceshipController extends Controller
      */
     public function index()
     {
-        $spaceships = Spaceship::all();
+        $spaceships = DB::table('spaceships')->paginate(5);
 
         if($spaceships == null) {
             Controller::createToast('error', 'Algo incomum aconteceu');
@@ -31,7 +32,7 @@ class SpaceshipController extends Controller
         }
 
         return view('pages.spaceships.general')
-            ->with('spaceships', $spaceships->toArray());
+            ->with('spaceships', $spaceships);
     }
 
     /**

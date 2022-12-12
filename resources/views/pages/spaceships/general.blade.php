@@ -28,14 +28,14 @@
                 <x-slot:tbody>
                     @foreach($spaceships as $spaceship)
                         <tr>
-                            <th scope="row">{{ $spaceship['id'] }}</th>
+                            <th scope="row">{{ $spaceship->id }}</th>
 
                             <td>
                                 <img
                                     class="wf-60 ms-3"
-                                    src="{{ asset('storage/images/' . $spaceship['arquivo']) }}"
-                                    alt="{{ __('Imagem da Nave') }}: {{ $spaceship['name'] }}"
-                                    title="{{ __('Imagem da Nave') }}: {{ $spaceship['name'] }}"
+                                    src="{{ asset('storage/images/' . $spaceship->arquivo) }}"
+                                    alt="{{ __('Imagem da Nave') }}: {{ $spaceship->name }}"
+                                    title="{{ __('Imagem da Nave') }}: {{ $spaceship->name }}"
                                     onerror="
                                         this.onerror=null;
                                         this.title='{{ __('Não existe ou não foi possível carregar a imagem') }}'
@@ -47,22 +47,22 @@
                             <td>
                                 <a
                                     class="text-decoration-none"
-                                    href="{{ route('spaceships.show', [$spaceship['id']]) }}"
+                                    href="{{ route('spaceships.show', [$spaceship->id]) }}"
                                 >
-                                    {{ $spaceship['name'] }}
+                                    {{ $spaceship->name }}
                                 </a>
                             </td>
 
-                            <td>{{ $spaceship['fuel'] }}</td>
+                            <td>{{ $spaceship->fuel }}</td>
 
-                            <td>{{ $spaceship['motor_power'] }}</td>
+                            <td>{{ $spaceship->motor_power }}</td>
 
-                            <td>{{ $spaceship['quantity_weapon'] }}</td>
+                            <td>{{ $spaceship->quantity_weapon }}</td>
 
                             <td class="wf-125">
                                 <div class="d-flex justify-content-center ">
 
-                                    <a class="text-decoration-none me-1" href="{{ route('spaceships.edit', [$spaceship['id']]) }}">
+                                    <a class="text-decoration-none me-1" href="{{ route('spaceships.edit', [$spaceship->id]) }}">
                                         <x-button-action type='edit' title="{{ __('Editar a nave') }}" />
                                     </a>
 
@@ -72,11 +72,11 @@
                                             <div class='d-flex flex-column'>
                                                 <span class='mb-2'>
                                                     {{ __('Você tem certeza que deseja excluir a nave de
-                                                        id ' . $spaceship['id'] . ' e
-                                                        nome ' . $spaceship['name']) . '?' }}
+                                                        id ' . $spaceship->id . ' e
+                                                        nome ' . $spaceship->name) . '?' }}
                                                 </span>
                                                 <a
-                                                    id='{{ route('spaceships.destroy', [$spaceship['id']]) }}'
+                                                    id='{{ route('spaceships.destroy', [$spaceship->id]) }}'
                                                     class='buttonDeleteSpaceship btn btn-danger flex-fill'>
                                                     {{  __('Excluir Nave') }}
                                                 </a>
@@ -91,6 +91,10 @@
                 </x-slot:tbody>
 
             </x-table>
+
+            <div class="d-flex justify-content-end">
+                {{ $spaceships->links() }}
+            </div>
 
              <form id='formDeleteSpaceship' method="POST">
                 @csrf
