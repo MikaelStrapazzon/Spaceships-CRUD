@@ -46,7 +46,7 @@
 
                             <td>
                                 <a
-                                    class="text-decoration-none"
+                                    class="fw-bold"
                                     href="{{ route('spaceships.show', [$spaceship->id]) }}"
                                 >
                                     {{ $spaceship->name }}

@@ -30,13 +30,14 @@
         class="
             h-100 w-100
             min-vh-100
-            d-flex align-items-stretch flex-column overflow-hidden
-    ">
+            d-flex align-items-stretch flex-column overflow-hidden"
+        style="background-image: url('{{ asset('assets/background.jpg') }}')"
+    >
         <x-header />
 
         <div class="d-flex flex-grow-1">
             <div class="h-100 w-100 min-wf-300 p-3">
-                <h3>{{ __($titlePage) }}</h3>
+                <h3 class="text-white">{{ __($titlePage) }}</h3>
 
                 {{ $slot }}
 
