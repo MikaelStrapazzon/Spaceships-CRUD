@@ -1,0 +1,127 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+$theme-colors: map-merge($theme-colors, (
+    // 'orange': $orange
+));
+
+$pxSizing: (
+    14: 14px,
+    16: 16px,
+    24: 24px,
+    30: 30px,
+    45: 45px,
+    60: 60px,
+    90: 90px,
+    125: 125px,
+    210: 210px,
+    260: 260px,
+    300: 300px,
+    340: 340px,
+    400: 400px
+);
+
+$percentageSizing: (
+    100: 100%
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "height-fixed": (
+      property: height,
+      class: hf,
+      values: $pxSizing
+    ),
+    "width-fixed": (
+      property: width,
+      class: wf,
+      values: $pxSizing
+    ),
+    "min-height": (
+      property: min-height,
+      class: min-h,
+      values: $percentageSizing
+    ),
+    "min-width-fixed": (
+      property: min-width,
+      class: min-wf,
+      values: $pxSizing
+    ),
+    "max-width-fixed": (
+      property: max-width,
+      class: max-wf,
+      values: $pxSizing
+    ),
+    "width": map-merge(
+      map-get($utilities, "width"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (30: 30%),
+        ),
+      ),
+    ),
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+            map-get(map-get($utilities, "color"), "values"),
+            (
+                $grays
+            )
+        )
+      )
+    ),
+    "font-size": map-merge(
+      map-get($utilities, "font-size"),
+      (
+        values: map-merge(
+            map-get(map-get($utilities, "font-size"), "values"),
+            (
+                7: $font-size-base * 0.875,
+                8: $font-size-base * 0.75
+            )
+        )
+      )
+    ),
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      (
+        values: map-merge(
+            map-get(map-get($utilities, "background-color"), "values"),
+            (
+                $grays
+            )
+        )
+      )
+    ),
+    "bg-opacity": map-merge(
+      map-get($utilities, "bg-opacity"),
+      (
+        values: map-merge(
+            map-get(map-get($utilities, "bg-opacity"), "values"),
+            (
+                90: 0.9
+            )
+        )
+      )
+    ),
+    "border-color": map-merge(
+        map-get($utilities, "border-color"),
+        (
+          values: map-merge(
+              map-get(map-get($utilities, "border-color"), "values"),
+              (
+                  $grays
+              )
+          )
+        )
+      ),
+  )
+);
+
+@import "bootstrap/scss/utilities/api";

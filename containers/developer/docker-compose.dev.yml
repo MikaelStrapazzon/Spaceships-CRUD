@@ -1,0 +1,35 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    container_name: spaceships-dev
+    tty: true
+    ports:
+      - "7001:7001"
+      - "5173:5173"
+    working_dir: /app
+    volumes:
+      - ../../:/app
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+    command: sh /app/containers/developer/initServeDev.sh
+    links:
+      - database
+
+  database:
+    image: mysql:8.0
+    container_name: MySQL
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: spaceships
+    volumes:
+      - data-bd:/var/lib/mysql
+
+volumes:
+  data-bd:
