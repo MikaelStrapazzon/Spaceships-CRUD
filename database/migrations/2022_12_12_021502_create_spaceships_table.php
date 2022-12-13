@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('arquivo')->unique();
+            $table->string('arquivo');
             $table->string('fuel');
             $table->string('motor_power');
             $table->integer('quantity_weapon');
